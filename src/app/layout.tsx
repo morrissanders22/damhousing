@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Providers from "@/components/Providers";
+import AppShell from "@/components/layout/AppShell";
 
 export const metadata: Metadata = {
-  title: "Damhousing",
-  description: "Damhousing — woningen en verhuur.",
+  title: "Dam Housing",
+  description:
+    "Dam Housing — makelaardij in Amsterdam. Verkoop, aankoop, verhuur en taxatie van woningen.",
 };
 
 export default function RootLayout({
@@ -24,13 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="nl"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        {children}
-        <Toaster />
+    <html lang="nl">
+      <body>
+        <Providers>
+          <AppShell>{children}</AppShell>
+        </Providers>
       </body>
     </html>
   );

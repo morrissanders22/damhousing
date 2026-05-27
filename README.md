@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dam Housing
 
-## Getting Started
+Makelaardij-website voor Dam Housing (Amsterdam), gebouwd met **Next.js 16 (App Router)** en **React 19**.
 
-First, run the development server:
+Oorspronkelijk gegenereerd in [base44](https://base44.com) als een Vite + React SPA en gemigreerd naar Next.js. De woningdata (`Property`) komt nog steeds van het base44-platform via de base44 SDK.
+
+## Stack
+
+- **Next.js 16** App Router + **React 19**
+- **Tailwind CSS v3** met het Dam Housing design-system (zie [src/app/globals.css](src/app/globals.css) + [tailwind.config.js](tailwind.config.js))
+- shadcn/ui componenten (Radix) — [src/components/ui](src/components/ui)
+- **TanStack Query** voor data-fetching
+- **framer-motion** voor animaties
+- **@base44/sdk** als datalaag (publieke app, geen login)
+
+## Ontwikkelen
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # productie-build
+npm run lint     # ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Architectuur
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Onderdeel | Locatie |
+|---|---|
+| Routes (App Router) | [src/app](src/app) — elke `page.jsx` her-exporteert een view |
+| Pagina-componenten | [src/views](src/views) — `Home`, `Properties`, `PropertyDetail`, `Verkoop`, `Aankoop`, `Verhuur`, `Taxatie`, `About`, `Contact`, `Services` |
+| Layout / shell | [src/components/layout/AppShell.jsx](src/components/layout/AppShell.jsx) (Navbar, Footer, WhatsApp-knop, Toaster, scroll-to-top) |
+| base44 client | [src/api/base44Client.js](src/api/base44Client.js) |
+| Router-shim | [src/lib/router.jsx](src/lib/router.jsx) — mapt het react-router-oppervlak (`Link`, `useLocation`, `useNavigate`, `useParams`) op Next.js |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Routing
 
-## Learn More
+Pagina's gebruikten oorspronkelijk `react-router-dom`. Bij de migratie is dat vervangen door:
 
-To learn more about Next.js, take a look at the following resources:
+1. Bestandsgebaseerde routes in [src/app](src/app).
+2. Een dunne compat-shim ([src/lib/router.jsx](src/lib/router.jsx)) zodat de geporteerde componenten `Link to=…`, `useLocation`, `useNavigate` en `useParams` ongewijzigd kunnen blijven gebruiken.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### base44 datalaag
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+De app is publiek (`public_without_login`). De base44 SDK doet relatieve `/api/...`-calls; die worden in [next.config.ts](next.config.ts) via een rewrite doorgestuurd naar `https://app.base44.com`, zodat er geen CORS-problemen zijn.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+App ID: `69de2de67917694d33fdfed5`.
