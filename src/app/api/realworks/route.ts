@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import type { Dispatcher } from "undici";
+import { fetch as undiciFetch, ProxyAgent, type Dispatcher } from "undici";
 
 // Realworks calls run server-side only (the token is secret) on the Node
 // runtime, and are never cached.
@@ -26,25 +26,32 @@ export async function GET(req: NextRequest) {
   const proxyUrl = process.env.REALWORKS_PROXY_URL;
   let dispatcher: Dispatcher | undefined;
   if (proxyUrl) {
-    const { ProxyAgent } = await import("undici");
     dispatcher = new ProxyAgent(proxyUrl);
   }
 
-  const init: RequestInit & { dispatcher?: Dispatcher } = {
+  // NB: we use undici's own fetch, not Node's global fetch. The ProxyAgent
+  // comes from this package's undici; passing it as `dispatcher` to Node 24's
+  // built-in (older) undici fetch throws "invalid onRequestStart method"
+  // (UND_ERR_INVALID_ARG). undici's fetch + undici's ProxyAgent are matched.
+  const init: Parameters<typeof undiciFetch>[1] = {
     headers: {
       Authorization: `rwauth ${token}`,
       "Content-Type": "application/json",
     },
-    cache: "no-store",
   };
   if (dispatcher) init.dispatcher = dispatcher;
 
-  let res: Response;
+  let res: Awaited<ReturnType<typeof undiciFetch>>;
   try {
-    res = await fetch(url, init);
+    res = await undiciFetch(url, init);
   } catch (err) {
+    const e = err as Error & { cause?: { message?: string; code?: string } };
     return NextResponse.json(
-      { error: "Realworks-aanvraag mislukt", detail: (err as Error).message },
+      {
+        error: "Realworks-aanvraag mislukt",
+        detail: e.message,
+        cause: e.cause?.message ?? e.cause?.code,
+      },
       { status: 502 }
     );
   }
