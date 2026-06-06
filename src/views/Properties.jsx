@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { base44 } from "@/api/base44Client";
+import { fetchRealworksProperties } from "@/lib/realworks";
 import PropertyCard from "../components/shared/PropertyCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -16,8 +16,8 @@ export default function Properties() {
   const [showFilters, setShowFilters] = useState(false);
 
   const { data: properties = [], isLoading } = useQuery({
-    queryKey: ["properties"],
-    queryFn: () => base44.entities.Property.list("-created_date", 50),
+    queryKey: ["properties", "realworks"],
+    queryFn: fetchRealworksProperties,
   });
 
   const statusOrder = { beschikbaar: 0, nieuw: 0, onder_bod: 1, verhuurd: 2, verkocht: 3 };

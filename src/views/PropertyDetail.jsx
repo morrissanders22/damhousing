@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { base44 } from "@/api/base44Client";
+import { fetchRealworksProperty } from "@/lib/realworks";
 import { Link, useParams } from '@/lib/router';
 import {
   ArrowLeft, Bed, Bath, Maximize, Calendar, Zap,
@@ -16,10 +16,7 @@ export default function PropertyDetail() {
 
   const { data: property, isLoading } = useQuery({
     queryKey: ["property", propertyId],
-    queryFn: async () => {
-      const items = await base44.entities.Property.filter({ id: propertyId });
-      return items[0];
-    },
+    queryFn: () => fetchRealworksProperty(propertyId),
     enabled: !!propertyId,
   });
 

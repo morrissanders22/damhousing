@@ -3,15 +3,16 @@ import React from "react";
 import { Link } from '@/lib/router';
 import { ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { base44 } from "@/api/base44Client";
+import { fetchRealworksProperties } from "@/lib/realworks";
 import PropertyCard from "../shared/PropertyCard";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function FeaturedListings() {
-  const { data: properties = [], isLoading } = useQuery({
-    queryKey: ["featured-properties", "v2"],
-    queryFn: () => base44.entities.Property.list("-created_date", 12),
+  const { data: allProperties = [], isLoading } = useQuery({
+    queryKey: ["properties", "realworks"],
+    queryFn: fetchRealworksProperties,
   });
+  const properties = allProperties.slice(0, 6);
 
   return (
     <section className="pt-12 lg:pt-16 pb-12 lg:pb-16 bg-mist">
