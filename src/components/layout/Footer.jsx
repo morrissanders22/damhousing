@@ -35,15 +35,12 @@ export default function Footer() {
               to="/"
               className="inline-block mb-6 hover:opacity-80 transition-opacity duration-300"
             >
-              {/* Light panel: the logo's "DAM" letters are cut-out (transparent),
-                  so they need a light background to stay legible on the dark footer. */}
-              <span className="inline-block bg-limestone rounded-sm p-4">
-                <img
-                  src="/dam-logo.png"
-                  alt="DAM housing"
-                  className="h-24 w-auto object-contain"
-                />
-              </span>
+              {/* White logo with the red DAM block — no panel needed on the dark footer. */}
+              <img
+                src="/dam-logo-whitered.png"
+                alt="DAM housing"
+                className="h-20 w-auto object-contain"
+              />
             </Link>
             <p className="text-limestone/50 max-w-md leading-relaxed" style={{ fontSize: '15px' }}>
               Persoonlijk, ervaren en betrokken. Jouw vertrouwde makelaar &amp; taxateur in de regio Amstelveen en omstreken.
