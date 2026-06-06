@@ -83,6 +83,14 @@ function mapRooms(o) {
   };
 }
 
+// The Realworks Beeldservice serves a 110x150 thumbnail by default. `resize=4`
+// returns the full-resolution image (~1165x1591); the signed `check` token stays
+// valid with the param appended. Other resize presets are thumbnails or errors.
+function highRes(link) {
+  if (!link) return link;
+  return link.includes("resize=") ? link : `${link}&resize=4`;
+}
+
 // Only real photos (image/*), HOOFDFOTO first, then by volgnummer. PDF
 // floor plans / documents are excluded.
 function mapImages(o) {
@@ -94,7 +102,7 @@ function mapImages(o) {
       if (aHoofd !== bHoofd) return aHoofd - bHoofd;
       return (a.volgnummer || 0) - (b.volgnummer || 0);
     })
-    .map((m) => m.link)
+    .map((m) => highRes(m.link))
     .filter(Boolean);
   return media;
 }
