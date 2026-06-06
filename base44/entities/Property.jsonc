@@ -1,0 +1,129 @@
+{
+  "name": "Property",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Property title/address"
+    },
+    "street": {
+      "type": "string"
+    },
+    "house_number": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "neighborhood": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in euros"
+    },
+    "price_suffix": {
+      "type": "string",
+      "enum": [
+        "k.k.",
+        "v.o.n.",
+        "p.m."
+      ],
+      "default": "k.k."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "appartement",
+        "woonhuis",
+        "penthouse",
+        "studio",
+        "villa"
+      ],
+      "default": "appartement"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "beschikbaar",
+        "onder_bod",
+        "verkocht",
+        "verhuurd",
+        "nieuw"
+      ],
+      "default": "beschikbaar"
+    },
+    "listing_type": {
+      "type": "string",
+      "enum": [
+        "koop",
+        "huur"
+      ],
+      "default": "koop"
+    },
+    "bedrooms": {
+      "type": "number"
+    },
+    "bathrooms": {
+      "type": "number"
+    },
+    "area_sqm": {
+      "type": "number",
+      "description": "Living area in square meters"
+    },
+    "plot_sqm": {
+      "type": "number",
+      "description": "Plot area in square meters"
+    },
+    "year_built": {
+      "type": "number"
+    },
+    "energy_label": {
+      "type": "string",
+      "enum": [
+        "A++++",
+        "A+++",
+        "A++",
+        "A+",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Full property description"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of features"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of image URLs"
+    },
+    "main_image": {
+      "type": "string",
+      "description": "Primary listing image URL"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "title",
+    "city",
+    "price"
+  ]
+}
