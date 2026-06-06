@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from '@/lib/router';
 
-const LOGO_URL = "https://media.base44.com/images/public/69de2de67917694d33fdfed5/cea760c97_Untitleddesign-2026-04-14T151148911.png";
+const LOGO_URL = "/dam-logo.png";
 
 export default function DamLogo({ variant = "dark", size = "md", asLink = true }) {
   const isLight = variant === "light";

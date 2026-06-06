@@ -2,7 +2,6 @@
 import React from "react";
 import { Link, useNavigate, useLocation } from '@/lib/router';
 import { ArrowUpRight } from "lucide-react";
-import DamLogo from "../shared/DamLogo";
 
 const FacebookIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -32,9 +31,20 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12 lg:py-16 pb-6 lg:pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="lg:col-span-2">
-            <div className="mb-6">
-              <DamLogo variant="light" size="lg" asLink={false} />
-            </div>
+            <Link
+              to="/"
+              className="inline-block mb-6 hover:opacity-80 transition-opacity duration-300"
+            >
+              {/* Light panel: the logo's "DAM" letters are cut-out (transparent),
+                  so they need a light background to stay legible on the dark footer. */}
+              <span className="inline-block bg-limestone rounded-sm p-4">
+                <img
+                  src="/dam-logo.png"
+                  alt="DAM housing"
+                  className="h-24 w-auto object-contain"
+                />
+              </span>
+            </Link>
             <p className="text-limestone/50 max-w-md leading-relaxed" style={{ fontSize: '15px' }}>
               Persoonlijk, ervaren en betrokken. Jouw vertrouwde makelaar &amp; taxateur in de regio Amstelveen en omstreken.
             </p>
