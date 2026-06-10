@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap');
+/* Fonts (Inter Tight + DM Serif Display) are loaded via next/font/google in
+   src/app/layout.tsx, which self-hosts them and sets --font-body / --font-display.
+   A plain @import here is stripped from the production CSS by Next, so the fonts
+   never loaded and the site fell back to system fonts. */
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +9,7 @@
 
 @layer base {
   :root {
-    --font-body: 'Inter Tight', sans-serif;
-    --font-display: 'DM Serif Display', serif;
+    /* --font-body / --font-display are provided by next/font (see layout.tsx). */
 
     --background: 30 20% 95%;
     --foreground: 210 8% 11%;
