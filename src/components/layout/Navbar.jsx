@@ -8,17 +8,9 @@ import DamLogo from "../shared/DamLogo";
 
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 120);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Close the mobile menu whenever the route changes.
   useEffect(() => {
@@ -26,19 +18,17 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  const navBg = scrolled || !isHome
-    ? "bg-background/95 backdrop-blur-md border-b hairline border-border"
-    : "bg-transparent";
-
-  const textColor = scrolled || !isHome ? "text-foreground" : "text-white";
-  const hoverColor = (!scrolled && isHome) ? "hover:text-white/60" : "hover:text-primary";
+  // The header is always a solid white bar with the full-colour logo.
+  const navBg = "bg-background/95 backdrop-blur-md border-b hairline border-border";
+  const textColor = "text-foreground";
+  const hoverColor = "hover:text-primary";
 
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-20">
-            <DamLogo variant={scrolled || !isHome ? "dark" : "light"} size="md" />
+            <DamLogo variant="dark" />
 
             <div className="hidden md:flex items-center gap-10">
               <Link to="/aanbod" className={`text-sm font-medium tracking-wide uppercase transition-colors duration-300 ${hoverColor} ${textColor}`}>
@@ -59,11 +49,7 @@ export default function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className={`absolute left-0 top-full rounded-sm min-w-[150px] overflow-hidden ${
-                        !scrolled && isHome
-                          ? "bg-limestone/10 backdrop-blur-md border hairline border-limestone/20"
-                          : "bg-background shadow-lg"
-                      }`}
+                      className="absolute left-0 top-full rounded-sm min-w-[150px] overflow-hidden bg-background shadow-lg"
                     >
                       {[
                         { to: "/verkoop", label: "Verkoop" },
@@ -74,11 +60,7 @@ export default function Navbar() {
                         <Link
                           key={to}
                           to={to}
-                          className={`block px-4 py-3 text-sm transition-colors ${
-                            !scrolled && isHome
-                              ? "text-limestone hover:bg-limestone/10"
-                              : "text-foreground hover:bg-secondary"
-                          }`}
+                          className="block px-4 py-3 text-sm transition-colors text-foreground hover:bg-secondary"
                         >
                           {label}
                         </Link>
@@ -98,11 +80,7 @@ export default function Navbar() {
                 href="https://www.move.nl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-sm font-medium tracking-wide uppercase px-4 py-2 border transition-colors duration-300 ${
-                  !scrolled && isHome
-                    ? "border-white/40 text-white hover:bg-white/10"
-                    : "border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                }`}
+                className="text-sm font-medium tracking-wide uppercase px-4 py-2 border transition-colors duration-300 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
               >
                 Move.nl
               </a>
