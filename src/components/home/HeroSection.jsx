@@ -19,16 +19,6 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-obsidian/30 to-obsidian/10" />
       </div>
 
-      {/* Move.nl button - fixed top right */}
-      <a
-        href="https://www.move.nl"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute top-24 right-6 lg:right-10 z-20 bg-limestone/10 backdrop-blur-md border hairline border-limestone/20 px-5 py-2.5 text-limestone text-sm font-medium tracking-wide hover:bg-limestone/20 transition-all duration-300"
-      >
-        Move.nl
-      </a>
-
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-end pb-20 lg:pb-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full">

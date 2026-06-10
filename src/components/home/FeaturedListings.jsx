@@ -12,7 +12,15 @@ export default function FeaturedListings() {
     queryKey: ["properties", "realworks"],
     queryFn: fetchRealworksProperties,
   });
-  const properties = allProperties.slice(0, 6);
+  // Show the six most recently registered listings.
+  const statusOrder = { beschikbaar: 0, nieuw: 0, onder_bod: 1, verhuurd: 2, verkocht: 3 };
+  const properties = [...allProperties]
+    .sort((a, b) => {
+      const s = (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1);
+      if (s !== 0) return s;
+      return new Date(b.listed_date || 0) - new Date(a.listed_date || 0);
+    })
+    .slice(0, 6);
 
   return (
     <section className="pt-12 lg:pt-16 pb-12 lg:pb-16 bg-mist">

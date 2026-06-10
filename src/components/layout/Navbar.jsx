@@ -93,6 +93,19 @@ export default function Navbar() {
               <Link to="/contact" className={`text-sm font-medium tracking-wide uppercase transition-colors duration-300 ${hoverColor} ${textColor}`}>
                 Contact
               </Link>
+              {/* Move.nl — primary call-to-action for bidding, kept on the top row. */}
+              <a
+                href="https://www.move.nl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-sm font-medium tracking-wide uppercase px-4 py-2 border transition-colors duration-300 ${
+                  !scrolled && isHome
+                    ? "border-white/40 text-white hover:bg-white/10"
+                    : "border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                }`}
+              >
+                Move.nl
+              </a>
             </div>
 
             <div className="flex items-center gap-4">

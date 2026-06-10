@@ -21,7 +21,7 @@ export default function Taxatie() {
           >
             Of je nu een huis koopt, verkoopt, je hypotheek oversluit of gewoon wilt weten wat je woning waard is — een officieel taxatierapport geeft je de zekerheid die je nodig hebt. De woningmarkt beweegt snel, en de werkelijke waarde van je woning kan flink afwijken van wat je ooit betaald hebt.
             <br /><br />
-            Als NWWI-gecertificeerd taxateur en VBO-makelaar — ingeschreven bij het NRVT — lever ik rapporten die alle banken accepteren. Objectief, helder en betrouwbaar.
+            Als Registermakelaar Taxateur (RMT) — ingeschreven bij het NRVT — lever ik NWWI-gevalideerde rapporten die alle banken accepteren. Objectief, helder en betrouwbaar.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -6,14 +6,12 @@ import PropertyCard from "../components/shared/PropertyCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Search, SlidersHorizontal, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Properties() {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
-  const [sortBy, setSortBy] = useState("-created_date");
-  const [showFilters, setShowFilters] = useState(false);
 
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["properties", "realworks"],
@@ -36,28 +34,14 @@ export default function Properties() {
     if (typeFilter !== "all") {
       result = result.filter(p => p.type === typeFilter);
     }
-    if (sortBy === "price_asc") {
-      result = [...result].sort((a, b) => {
-        const statusDiff = (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1);
-        if (statusDiff !== 0) return statusDiff;
-        return (a.price || 0) - (b.price || 0);
-      });
-    } else if (sortBy === "price_desc") {
-      result = [...result].sort((a, b) => {
-        const statusDiff = (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1);
-        if (statusDiff !== 0) return statusDiff;
-        return (b.price || 0) - (a.price || 0);
-      });
-    } else {
-      // Default: beschikbaar/nieuw first, oldest listings first (stille verkoop prioriteit)
-      result = [...result].sort((a, b) => {
-        const statusDiff = (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1);
-        if (statusDiff !== 0) return statusDiff;
-        return new Date(a.created_date) - new Date(b.created_date);
-      });
-    }
+    // Only ordering: available/new first, then most recently registered first.
+    result = [...result].sort((a, b) => {
+      const statusDiff = (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1);
+      if (statusDiff !== 0) return statusDiff;
+      return new Date(b.listed_date || 0) - new Date(a.listed_date || 0);
+    });
     return result;
-  }, [properties, search, typeFilter, sortBy]);
+  }, [properties, search, typeFilter]);
 
   return (
     <div className="pt-20">
@@ -81,7 +65,8 @@ export default function Properties() {
             </motion.h1>
           </motion.div>
 
-          {/* Search & Filters */}
+          {/* Search + the single Type filter (Appartement / Woonhuis / Overig).
+              Listings always show most-recently-registered first. */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -97,46 +82,18 @@ export default function Properties() {
                 </button>
               )}
             </div>
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="inline-flex items-center gap-2 px-4 h-12 border hairline border-border bg-background text-sm text-foreground hover:border-primary transition-colors"
-            >
-              <SlidersHorizontal className="w-4 h-4" />
-              Filters
-            </button>
+            <Select value={typeFilter} onValueChange={setTypeFilter}>
+              <SelectTrigger className="w-full sm:w-52 h-12 bg-background text-sm">
+                <SelectValue placeholder="Type woning" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Alle types</SelectItem>
+                <SelectItem value="appartement">Appartement</SelectItem>
+                <SelectItem value="woonhuis">Woonhuis</SelectItem>
+                <SelectItem value="overig">Overig</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-
-          {showFilters && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              className="mt-4 flex flex-wrap gap-4"
-            >
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger className="w-48 h-10 bg-background text-sm">
-                  <SelectValue placeholder="Type woning" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Alle types</SelectItem>
-                  <SelectItem value="appartement">Appartement</SelectItem>
-                  <SelectItem value="woonhuis">Woonhuis</SelectItem>
-                  <SelectItem value="penthouse">Penthouse</SelectItem>
-                  <SelectItem value="villa">Villa</SelectItem>
-                  <SelectItem value="studio">Studio</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-48 h-10 bg-background text-sm">
-                  <SelectValue placeholder="Sorteren" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="-created_date">Langst online eerst</SelectItem>
-                  <SelectItem value="price_asc">Prijs oplopend</SelectItem>
-                  <SelectItem value="price_desc">Prijs aflopend</SelectItem>
-                </SelectContent>
-              </Select>
-            </motion.div>
-          )}
         </div>
       </div>
 

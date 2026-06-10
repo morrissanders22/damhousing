@@ -13,11 +13,10 @@ const values = [
 ];
 
 const certifications = [
-  "VBO Makelaar",
-  "NWWI Gevalideerd Taxateur",
+  "Vastgoed Nederland",
+  "Registermakelaar Taxateur (RMT)",
   "AVG OK Gecertificeerd",
   "MMCEPI Gecertificeerd",
-  "Vastgoed Nederland",
   "Funda Partner",
 ];
 
@@ -207,24 +206,15 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
-              <motion.p 
-                className="text-xs tracking-widest uppercase text-muted-foreground mb-3"
+              <motion.p
+                className="text-xs tracking-widest uppercase text-muted-foreground"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                Certificeringen
+                Kwaliteit gegarandeerd
               </motion.p>
-              <motion.h2 
-               className="font-display text-2xl lg:text-3xl text-foreground"
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.6, delay: 0.1 }}
-              >
-               Kwaliteit gegarandeerd
-              </motion.h2>
             </div>
             <div className="lg:col-span-8">
               <ul className="space-y-0">

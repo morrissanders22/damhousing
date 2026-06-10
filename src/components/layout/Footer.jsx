@@ -37,9 +37,9 @@ export default function Footer() {
             >
               {/* White logo with the red DAM block — no panel needed on the dark footer. */}
               <img
-                src="/dam-logo-whitered.png"
+                src="/dam-logo-whitered-trim.png"
                 alt="DAM housing"
-                className="h-20 w-auto object-contain"
+                className="h-24 w-auto object-contain"
               />
             </Link>
             <p className="text-limestone/50 max-w-md leading-relaxed" style={{ fontSize: '15px' }}>

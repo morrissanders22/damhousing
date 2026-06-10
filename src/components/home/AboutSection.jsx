@@ -8,7 +8,7 @@ const qualities = [
   { icon: Handshake, text: "Advies dat je kunt vertrouwen, altijd eerlijk en direct" },
   { icon: Star, text: "Al meer dan 15 jaar actief in de makelaardij" },
   { icon: MapPin, text: "De regio van Haarlem tot Wilnis ken ik op mijn duimpje" },
-  { icon: Award, text: "VBO-makelaar én NWWI-gecertificeerd taxateur" },
+  { icon: Award, text: "Registermakelaar Taxateur (RMT), aangesloten bij Vastgoed Nederland" },
 ];
 
 export default function AboutSection() {

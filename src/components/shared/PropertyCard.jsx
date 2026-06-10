@@ -52,25 +52,14 @@ export default function PropertyCard({ property, featured = false, pullUp = fals
             alt={property.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          {/* Metadata overlays */}
-          <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-start">
-            {statusLabel && (
+          {/* Only the status badge sits on the photo — price/m² moved below. */}
+          {statusLabel && (
+            <div className="absolute top-0 left-0 p-4">
               <span className={`text-xs tracking-widest uppercase px-3 py-1.5 ${statusColors[property.status]}`}>
                 {statusLabel}
               </span>
-            )}
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-obsidian/60 to-transparent">
-            <div className="flex justify-between items-end">
-              <span className="text-limestone text-xs tracking-widest uppercase">
-                {property.area_sqm && `${property.area_sqm} m²`}
-              </span>
-              <span className="text-limestone font-display text-lg">
-                {formatPrice(property.price)}
-                <span className="text-limestone/60 text-xs ml-1">{property.price_suffix}</span>
-              </span>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="pt-4 pb-6">
@@ -84,22 +73,36 @@ export default function PropertyCard({ property, featured = false, pullUp = fals
             <ArrowRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 mt-1 flex-shrink-0" />
           </div>
 
-          <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
-            {property.bedrooms && (
-              <span className="flex items-center gap-1.5">
-                <Bed className="w-3.5 h-3.5" /> {property.bedrooms}
+          {/* Price + key specs bundled on one line below the photo. */}
+          <div className="flex items-center flex-wrap gap-x-3 gap-y-1.5 mt-3 text-sm">
+            {property.price != null && (
+              <span className="font-display text-foreground">
+                {formatPrice(property.price)}
+                {property.price_suffix && (
+                  <span className="text-muted-foreground text-xs ml-1">{property.price_suffix}</span>
+                )}
               </span>
             )}
-            {property.bathrooms && (
-              <span className="flex items-center gap-1.5">
-                <Bath className="w-3.5 h-3.5" /> {property.bathrooms}
-              </span>
+            {(property.bedrooms || property.bathrooms || property.area_sqm) && (
+              <span className="text-border">·</span>
             )}
-            {property.area_sqm && (
-              <span className="flex items-center gap-1.5">
-                <Maximize className="w-3.5 h-3.5" /> {property.area_sqm} m²
-              </span>
-            )}
+            <span className="flex items-center gap-3 text-xs text-muted-foreground">
+              {property.bedrooms && (
+                <span className="flex items-center gap-1.5">
+                  <Bed className="w-3.5 h-3.5" /> {property.bedrooms}
+                </span>
+              )}
+              {property.bathrooms && (
+                <span className="flex items-center gap-1.5">
+                  <Bath className="w-3.5 h-3.5" /> {property.bathrooms}
+                </span>
+              )}
+              {property.area_sqm && (
+                <span className="flex items-center gap-1.5">
+                  <Maximize className="w-3.5 h-3.5" /> {property.area_sqm} m²
+                </span>
+              )}
+            </span>
           </div>
         </div>
       </Link>

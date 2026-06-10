@@ -30,7 +30,7 @@ const contactInfo = [
   { icon: Phone, label: "Telefoon", values: [{ value: "020 - 820 0159", href: "tel:+31208200159" }, { value: "06 - 2513 8259", href: "tel:+31625138259" }] },
   { icon: Mail, label: "E-mail", values: [{ value: "info@damhousing.nl", href: "mailto:info@damhousing.nl" }] },
   { icon: MapPin, label: "Locatie", values: [{ value: "Amstelveen, Nederland", href: null }] },
-  { icon: Clock, label: "Bereikbaar", values: [{ value: "Ma - Vr: 9:00 - 17:30", href: null }] },
+  { icon: Clock, label: "Bereikbaar", values: [{ value: "Ma - Vr: 9:00 - 17:30", href: null }, { value: "Buiten deze tijden op afspraak", href: null }] },
 ];
 
 export default function Contact() {

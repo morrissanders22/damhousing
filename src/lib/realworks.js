@@ -28,21 +28,14 @@ function houseNumber(adres) {
   return `${h.hoofdnummer ?? ""}${h.toevoeging ? h.toevoeging : ""}`.trim();
 }
 
-// Design type filter values: appartement | woonhuis | penthouse | villa | studio
+// Design type filter values (simplified per client request): appartement |
+// woonhuis | overig. Everything that isn't a flat or a house (bouwgrond,
+// recreatie, parkeren, etc.) collapses into "overig".
 function mapType(o) {
   const objecttype = o.object?.type?.objecttype || "";
-  const app = String(o.algemeen?.appartementsoort || "").toUpperCase();
-  const huis = String(o.algemeen?.woonhuistype || "").toUpperCase();
-  if (objecttype === "APPARTEMENT") {
-    if (app.includes("PENTHOUSE")) return "penthouse";
-    if (app.includes("STUDIO")) return "studio";
-    return "appartement";
-  }
-  if (objecttype === "WOONHUIS") {
-    if (huis.includes("VILLA") || huis.includes("LANDHUIS")) return "villa";
-    return "woonhuis";
-  }
-  return objecttype.toLowerCase();
+  if (objecttype === "APPARTEMENT") return "appartement";
+  if (objecttype === "WOONHUIS") return "woonhuis";
+  return "overig";
 }
 
 // Design status values: beschikbaar | nieuw | onder_bod | verkocht | verhuurd
@@ -123,6 +116,10 @@ export function mapRealworksObject(o) {
     neighborhood: o.adres?.wijk ? titleCase(o.adres.wijk) : null,
     type: mapType(o),
     status: mapStatus(o),
+    // Registration date ("aangemeld"); used to sort newest listings first.
+    // NB: invoerdatum is the Realworks entry date — confirm with Realworks that
+    // this matches their "meest recent aangemeld" semantics (re-listings).
+    listed_date: o.diversen?.diversen?.invoerdatum || null,
     price,
     price_suffix,
     bedrooms,
