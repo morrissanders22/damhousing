@@ -116,6 +116,12 @@ export function mapRealworksObject(o) {
     neighborhood: o.adres?.wijk ? titleCase(o.adres.wijk) : null,
     type: mapType(o),
     status: mapStatus(o),
+    // Realworks afdeling/vestiging-id; the Move bezichtigingsplanner widget
+    // needs this as its department_id (confirmed: the makelaar's afdelingscode,
+    // not algemeen.gekoppeldeMakelaar). See ViewingPlanner.
+    department_id: o.diversen?.diversen?.afdelingscode
+      ? String(o.diversen.diversen.afdelingscode)
+      : null,
     // Registration date ("aangemeld"); used to sort newest listings first.
     // NB: invoerdatum is the Realworks entry date — confirm with Realworks that
     // this matches their "meest recent aangemeld" semantics (re-listings).

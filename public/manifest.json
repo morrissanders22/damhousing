@@ -1,21 +1,21 @@
 {
-  "name": "DAM housing - Makelaar & Taxateur",
-  "short_name": "DAM housing",
-  "description": "Professionele makelaars- en taxatieservices in Amstelveen en Aalsmeer",
+  "name": "DAM Housing - Makelaar & Taxateur",
+  "short_name": "DAM Housing",
+  "description": "Persoonlijke makelaar en taxateur in Amstelveen, Aalsmeer en omstreken.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#7a1d3a",
+  "theme_color": "#7e0c19",
   "icons": [
     {
-      "src": "https://base44.com/logo_v2.svg",
+      "src": "/dam-logo.png",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/png"
     },
     {
-      "src": "https://base44.com/logo_v2.svg",
+      "src": "/dam-logo.png",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/png"
     }
   ]
 }

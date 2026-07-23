@@ -36,7 +36,7 @@ export default function SlidingMenu({ isOpen, onClose }) {
             <div className="p-8 lg:p-12 h-full flex flex-col">
               <div className="flex justify-between items-center mb-8">
                 <DamLogo variant="light" size="sm" asLink={false} />
-                <button onClick={onClose} className="p-2 hover:text-primary transition-colors">
+                <button onClick={onClose} aria-label="Menu sluiten" className="p-2 hover:text-primary transition-colors">
                   <X className="w-6 h-6" />
                 </button>
               </div>

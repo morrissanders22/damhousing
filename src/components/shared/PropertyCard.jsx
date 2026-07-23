@@ -49,8 +49,10 @@ export default function PropertyCard({ property, featured = false, pullUp = fals
         <div className={`relative overflow-hidden aspect-[4/3]`}>
           <img
             src={images[imageIndex] || "/placeholder.jpg"}
-            alt={property.title}
+            alt={`${property.title}${property.city ? `, ${property.city}` : ""}`}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
           />
           {/* Only the status badge sits on the photo — price/m² moved below. */}
           {statusLabel && (

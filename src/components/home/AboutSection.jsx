@@ -80,8 +80,10 @@ export default function AboutSection() {
               >
                 <img
                   src="https://media.base44.com/images/public/69de2de67917694d33fdfed5/dcbdf9dc9_FDB-9914.jpg"
-                  alt="Karen Dam"
+                  alt="Karen Dam, makelaar en taxateur bij DAM Housing"
                   className="w-full object-cover rounded-sm"
+                  loading="lazy"
+                  decoding="async"
                 />
               </motion.div>
             </div>

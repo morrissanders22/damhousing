@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Link } from '@/lib/router';
 import { ArrowRight, Search } from "lucide-react";
@@ -11,10 +12,14 @@ export default function HeroSection() {
     <section className="relative h-screen min-h-[700px] overflow-hidden">
       {/* Background Image with Parallax */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={HERO_IMAGE}
-          alt="Luxurious Amsterdam canal house interior with large windows and afternoon sunlight"
-          className="w-full h-full object-cover"
+          alt="Sfeervol interieur van een woning met grote ramen en avondlicht — DAM Housing makelaar Amstelveen"
+          fill
+          priority
+          sizes="100vw"
+          quality={70}
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-obsidian/30 to-obsidian/10" />
       </div>

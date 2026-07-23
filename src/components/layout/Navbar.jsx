@@ -93,6 +93,7 @@ export default function Navbar() {
               </a>
               <button
                 onClick={() => setMenuOpen(true)}
+                aria-label="Menu openen"
                 className={`p-2 transition-colors duration-300 ${textColor} ${hoverColor}`}
               >
                 <Menu className="w-6 h-6" />

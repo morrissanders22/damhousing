@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchRealworksProperty } from "@/lib/realworks";
+import ViewingPlanner from "@/components/property/ViewingPlanner";
 import { Link, useParams } from '@/lib/router';
 import {
   ArrowLeft, Bed, Bath, Maximize, Calendar, Zap,
@@ -44,6 +45,12 @@ export default function PropertyDetail() {
 
   const images = property.images?.length ? property.images : (property.main_image ? [property.main_image] : []);
 
+  // Move bezichtigingsplanner: only for listings that can still be viewed.
+  const canPlanViewing =
+    ["beschikbaar", "nieuw"].includes(property.status) &&
+    property.department_id;
+  const plannerToken = process.env.NEXT_PUBLIC_VIEWINGPLANNER_WIDGET_TOKEN;
+
   return (
     <div className="pt-20">
       {/* Back navigation */}
@@ -69,12 +76,14 @@ export default function PropertyDetail() {
             <>
               <button
                 onClick={() => setImageIndex((imageIndex - 1 + images.length) % images.length)}
+                aria-label="Vorige foto"
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 hover:bg-background transition-colors"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setImageIndex((imageIndex + 1) % images.length)}
+                aria-label="Volgende foto"
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 hover:bg-background transition-colors"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -84,6 +93,7 @@ export default function PropertyDetail() {
                   <button
                     key={i}
                     onClick={() => setImageIndex(i)}
+                    aria-label={`Ga naar foto ${i + 1}`}
                     className={`w-2 h-2 rounded-full transition-colors ${i === imageIndex ? "bg-limestone" : "bg-limestone/40"}`}
                   />
                 ))}
@@ -203,6 +213,14 @@ export default function PropertyDetail() {
               </div>
             </div>
           </div>
+
+          {canPlanViewing && plannerToken && (
+            <ViewingPlanner
+              objectId={property.id}
+              departmentId={property.department_id}
+              token={plannerToken}
+            />
+          )}
         </div>
       </div>
     </div>

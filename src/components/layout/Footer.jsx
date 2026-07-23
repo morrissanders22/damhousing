@@ -46,13 +46,13 @@ export default function Footer() {
               Persoonlijk, ervaren en betrokken. Jouw vertrouwde makelaar &amp; taxateur in de regio Amstelveen en omstreken.
             </p>
             <div className="flex items-center gap-4 mt-6">
-              <a href="https://www.facebook.com/damhousing/" target="_blank" rel="noopener noreferrer" className="text-limestone/40 hover:text-limestone transition-colors duration-300">
+              <a href="https://www.facebook.com/damhousing/" target="_blank" rel="noopener noreferrer" aria-label="DAM Housing op Facebook" className="text-limestone/40 hover:text-limestone transition-colors duration-300">
                 <FacebookIcon />
               </a>
-              <a href="https://www.instagram.com/damhousing/" target="_blank" rel="noopener noreferrer" className="text-limestone/40 hover:text-limestone transition-colors duration-300">
+              <a href="https://www.instagram.com/damhousing/" target="_blank" rel="noopener noreferrer" aria-label="DAM Housing op Instagram" className="text-limestone/40 hover:text-limestone transition-colors duration-300">
                 <InstagramIcon />
               </a>
-              <a href="https://nl.linkedin.com/in/karen-brussee-dam" target="_blank" rel="noopener noreferrer" className="text-limestone/40 hover:text-limestone transition-colors duration-300">
+              <a href="https://nl.linkedin.com/in/karen-brussee-dam" target="_blank" rel="noopener noreferrer" aria-label="Karen Dam op LinkedIn" className="text-limestone/40 hover:text-limestone transition-colors duration-300">
                 <LinkedInIcon />
               </a>
             </div>
@@ -103,7 +103,14 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 px-6">
             <p className="text-xs text-limestone/30">© {new Date().getFullYear()} DAM housing. Alle rechten voorbehouden.</p>
             <div className="flex gap-6 text-xs text-limestone/30">
-              <span>Privacy</span>
+              <a
+                href="/avg-privacyverklaring.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors duration-300"
+              >
+                Privacyverklaring (AVG)
+              </a>
               <span>Voorwaarden</span>
             </div>
           </div>
