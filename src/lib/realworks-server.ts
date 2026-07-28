@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { fetch as undiciFetch, ProxyAgent, type Dispatcher } from "undici";
-import { mapRealworksObject } from "./realworks";
+import { isPubliclyVisible, mapRealworksObject } from "./realworks";
 
 // Server-side Realworks fetch for SEO needs (generateMetadata, JSON-LD,
 // sitemap). The client lib talks to our /api/realworks proxy via a relative
@@ -41,9 +41,11 @@ async function fetchObjecten(): Promise<RealworksObject[]> {
   }
 }
 
+// Zelfde zichtbaarheidsfilter als de client-kant: ingetrokken, geannuleerde en
+// handmatig geblokkeerde objecten komen niet in metadata, JSON-LD of sitemap.
 export const getAllProperties = cache(async () => {
   const objecten = await fetchObjecten();
-  return objecten.map(mapRealworksObject);
+  return objecten.filter(isPubliclyVisible).map(mapRealworksObject);
 });
 
 export const getProperty = cache(async (id: string) => {

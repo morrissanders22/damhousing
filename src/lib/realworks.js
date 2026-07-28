@@ -38,8 +38,114 @@ function mapType(o) {
   return "overig";
 }
 
+// ---------------------------------------------------------------------------
+// Realworks-status: bron van waarheid + vangnet
+// ---------------------------------------------------------------------------
+// `financieel.overdracht.status` kent precies deze waarden (opgevraagd bij de
+// API zelf door een ongeldige ?status= mee te geven aan /wonen/v3/objecten):
+//   PROSPECT, IN_AANMELDING, BESCHIKBAAR, ONDER_BOD, ONDER_OPTIE,
+//   VERKOCHT_ONDER_VOORBEHOUD, VERHUURD_ONDER_VOORBEHOUD, VERKOCHT, VERHUURD,
+//   GEVEILD, INGETROKKEN, INGETROKKEN_TIJDELIJK, IN_VOORBEREIDING,
+//   GEANNULEERD, VERKOCHT_BIJ_INSCHRIJVING
+//
+// Deze status is leidend. Eerder leidde mapStatus de status alleen af uit
+// transactieprijs/transactiedatum, waardoor een ingetrokken object met een
+// blijven-staan transactiedatum als "Verkocht" op de site kwam.
+
+function rwStatus(o) {
+  return String(o?.financieel?.overdracht?.status || "")
+    .toUpperCase()
+    .trim();
+}
+
+// Statussen die nooit op de site horen — ook niet als "verkocht". Naast
+// ingetrokken/geannuleerd ook de fases vóór publicatie.
+const HIDDEN_STATUSES = new Set([
+  "INGETROKKEN",
+  "INGETROKKEN_TIJDELIJK",
+  "GEANNULEERD",
+  "PROSPECT",
+  "IN_AANMELDING",
+  "IN_VOORBEREIDING",
+]);
+
+// Vangnet voor statussen die Realworks later toevoegt (bv.
+// INGETROKKEN_DEFINITIEF): alles wat op intrekken/annuleren duidt blijft weg.
+const HIDDEN_STATUS_PATTERN = /INGETROKKEN|INTREKKING|GEANNULEERD|VERVALLEN/;
+
+// Handmatige noodrem. Objecten hier worden verborgen ongeacht wat Realworks
+// doorgeeft — nodig omdat Realworks een foute status kan doorsturen (dan helpt
+// de statuscheck hierboven niet). Zet `id` (Realworks object-id) óf
+// `straat` + `huisnummer` als het id niet bekend is.
+const MANUALLY_HIDDEN = [
+  // Juli 2026: Realworks stuurde dit object als "verkocht" door terwijl het
+  // ingetrokken is (ging ook fout op Funda). Tijdelijk verborgen op verzoek van
+  // DAM Housing. Pas weghalen als Realworks de status heeft rechtgezet.
+  { straat: "Oosteinderweg", huisnummer: "301" },
+];
+
+function addressKey(straat, huisnummer) {
+  const s = String(straat || "").toLowerCase().replace(/\s+/g, " ").trim();
+  const h = String(huisnummer || "").toLowerCase().replace(/\s+/g, "").trim();
+  return `${s} ${h}`.trim();
+}
+
+function isManuallyHidden(o) {
+  const id = String(o?.id ?? "");
+  const key = addressKey(o?.adres?.straat, houseNumber(o?.adres));
+  return MANUALLY_HIDDEN.some(
+    (entry) =>
+      (entry.id != null && String(entry.id) === id) ||
+      (entry.straat != null && addressKey(entry.straat, entry.huisnummer) === key)
+  );
+}
+
+// Mag dit object überhaupt op de site? Alles wat hier false teruggeeft komt niet
+// in het aanbod, niet op de detailpagina en niet in de sitemap.
+export function isPubliclyVisible(o) {
+  if (!o) return false;
+  if (o.actief === false) return false;
+  if (o.vertrouwelijk === true) return false;
+  const status = rwStatus(o);
+  if (HIDDEN_STATUSES.has(status) || HIDDEN_STATUS_PATTERN.test(status)) return false;
+  if (isManuallyHidden(o)) return false;
+  return true;
+}
+
+const STATUS_MAP = {
+  BESCHIKBAAR: "beschikbaar",
+  ONDER_BOD: "onder_bod",
+  ONDER_OPTIE: "onder_bod",
+  // Het design kent geen aparte "onder voorbehoud"-badge; "Onder bod" is het
+  // dichtstbijzijnde label dat de woning niet te vroeg als verkocht bestempelt.
+  VERKOCHT_ONDER_VOORBEHOUD: "onder_bod",
+  VERHUURD_ONDER_VOORBEHOUD: "onder_bod",
+  VERKOCHT: "verkocht",
+  VERKOCHT_BIJ_INSCHRIJVING: "verkocht",
+  GEVEILD: "verkocht",
+  VERHUURD: "verhuurd",
+};
+
 // Design status values: beschikbaar | nieuw | onder_bod | verkocht | verhuurd
 function mapStatus(o) {
+  const status = rwStatus(o);
+  const mapped = STATUS_MAP[status];
+  if (mapped) return mapped;
+
+  // Onbekende (nieuwe) Realworks-status: afleiden uit de naam, zodat een
+  // toekomstige variant niet stilletjes als "beschikbaar" doorgaat.
+  if (status) {
+    if (status.includes("VOORBEHOUD") || status.includes("BOD") || status.includes("OPTIE")) {
+      return "onder_bod";
+    }
+    if (status.includes("VERHUURD")) return "verhuurd";
+    if (status.includes("VERKOCHT") || status.includes("GEVEILD")) return "verkocht";
+    return "beschikbaar";
+  }
+
+  // Geen status meegeleverd: terugvallen op de transactievelden. Dit is de
+  // oude afleiding en alleen nog het laatste redmiddel — ingetrokken objecten
+  // zijn op dit punt al door isPubliclyVisible() weggefilterd.
   const ov = o.financieel?.overdracht || {};
   const isHuur = !ov.koopprijs && (ov.huurprijs != null || ov.huurconditie);
   if (ov.transactieprijs != null || ov.transactiedatum) {
@@ -150,16 +256,18 @@ async function fetchObjecten(search = "") {
 }
 
 // Fetch all listings (the makelaar has a small number of objects) mapped to the
-// design's property shape.
+// design's property shape. Ingetrokken/geannuleerde en handmatig geblokkeerde
+// objecten worden hier weggefilterd.
 export async function fetchRealworksProperties() {
   const objecten = await fetchObjecten("?aantal=100");
-  return objecten.map(mapRealworksObject);
+  return objecten.filter(isPubliclyVisible).map(mapRealworksObject);
 }
 
 // Fetch a single listing by id. Realworks' list endpoint is the public surface
-// we proxy, so we fetch and find — fine for this volume.
+// we proxy, so we fetch and find — fine for this volume. Een verborgen object
+// geeft null terug, zodat de detailpagina "niet gevonden" toont.
 export async function fetchRealworksProperty(id) {
   const objecten = await fetchObjecten("?aantal=100");
   const match = objecten.find((o) => String(o.id) === String(id));
-  return match ? mapRealworksObject(match) : null;
+  return match && isPubliclyVisible(match) ? mapRealworksObject(match) : null;
 }
