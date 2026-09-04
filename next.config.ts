@@ -66,12 +66,21 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
+    // The CMS (admin + backend) is a Flask function at api/index.py. These are
+    // afterFiles rewrites, so Next's own routes win first — /api/realworks keeps
+    // being served by src/app/api/realworks/route.ts. Everything else under /api,
+    // plus the admin and login routes, goes to Flask, which routes on the
+    // original request path.
+    //
+    // The old "/api/:path*" -> app.base44.com proxy is gone: the base44 SDK
+    // (src/api/base44Client.js + src/lib/AuthContext.jsx) is not mounted anywhere
+    // in the app, so it proxied nothing and would have swallowed every CMS route.
     return [
-      // base44 SDK makes same-origin "/api/..." calls; proxy them to base44.
-      {
-        source: "/api/:path*",
-        destination: "https://app.base44.com/api/:path*",
-      },
+      { source: "/api/:path*", destination: "/api/index" },
+      { source: "/admin", destination: "/api/index" },
+      { source: "/admin/:path*", destination: "/api/index" },
+      { source: "/inloggen", destination: "/api/index" },
+      { source: "/uitloggen", destination: "/api/index" },
     ];
   },
 };

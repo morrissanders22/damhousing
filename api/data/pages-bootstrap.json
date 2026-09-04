@@ -1,0 +1,715 @@
+{
+ "pages": {
+  "page:": {
+   "slug": "",
+   "title": "Home",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "hero",
+     "fixed": false
+    },
+    {
+     "type": "dam-sectie",
+     "section": "diensten",
+     "fixed": false
+    },
+    {
+     "type": "dam-sectie",
+     "section": "aanbod",
+     "fixed": false
+    },
+    {
+     "type": "dam-sectie",
+     "section": "over-ons",
+     "fixed": false
+    },
+    {
+     "type": "dam-sectie",
+     "section": "reviews",
+     "fixed": false
+    },
+    {
+     "type": "dam-sectie",
+     "section": "cta",
+     "fixed": false
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "hero",
+    "diensten",
+    "aanbod",
+    "over-ons",
+    "reviews",
+    "cta"
+   ],
+   "all_sections": [
+    {
+     "id": "hero",
+     "label": "Hero (bovenaan)"
+    },
+    {
+     "id": "diensten",
+     "label": "Diensten"
+    },
+    {
+     "id": "aanbod",
+     "label": "Uitgelicht aanbod"
+    },
+    {
+     "id": "over-ons",
+     "label": "Over DAM Housing"
+    },
+    {
+     "id": "reviews",
+     "label": "Google-reviews"
+    },
+    {
+     "id": "cta",
+     "label": "Oproep onderaan"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": true,
+   "meta": {
+    "title": "DAM Housing — Makelaar & Taxateur in Amstelveen & Aalsmeer",
+    "description": "Op zoek naar een makelaar in Amstelveen of Aalsmeer? DAM Housing begeleidt je persoonlijk bij de verkoop, aankoop, verhuur en taxatie van jouw woning.",
+    "canonical": "https://damhousing.nl/",
+    "robots": "index,follow"
+   }
+  },
+  "page:aanbod": {
+   "slug": "aanbod",
+   "title": "Woningaanbod",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "pagina",
+     "fixed": true
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "pagina"
+   ],
+   "all_sections": [
+    {
+     "id": "pagina",
+     "label": "Woningaanbod"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": false,
+   "meta": {
+    "title": "Woningaanbod",
+    "description": "Bekijk het actuele woningaanbod van DAM Housing in Amstelveen, Aalsmeer en omstreken: koopwoningen, appartementen en meer.",
+    "canonical": "https://damhousing.nl/aanbod",
+    "robots": "index,follow"
+   }
+  },
+  "page:diensten": {
+   "slug": "diensten",
+   "title": "Diensten",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "pagina",
+     "fixed": true
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "pagina"
+   ],
+   "all_sections": [
+    {
+     "id": "pagina",
+     "label": "Diensten"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": false,
+   "meta": {
+    "title": "Diensten",
+    "description": "Verkoop, aankoop, verhuur en taxatie: ontdek de diensten van DAM Housing, jouw makelaar en taxateur in Amstelveen, Aalsmeer en omstreken.",
+    "canonical": "https://damhousing.nl/diensten",
+    "robots": "index,follow"
+   }
+  },
+  "page:verkoop": {
+   "slug": "verkoop",
+   "title": "Verkoop",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "pagina",
+     "fixed": true
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "pagina"
+   ],
+   "all_sections": [
+    {
+     "id": "pagina",
+     "label": "Verkoop"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": false,
+   "meta": {
+    "title": "Woning verkopen",
+    "description": "Je woning verkopen in Amstelveen of Aalsmeer? DAM Housing begeleidt je persoonlijk van waardebepaling en styling tot onderhandeling en sleuteloverdracht.",
+    "canonical": "https://damhousing.nl/verkoop",
+    "robots": "index,follow"
+   }
+  },
+  "page:aankoop": {
+   "slug": "aankoop",
+   "title": "Aankoop",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "pagina",
+     "fixed": true
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "pagina"
+   ],
+   "all_sections": [
+    {
+     "id": "pagina",
+     "label": "Aankoop"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": false,
+   "meta": {
+    "title": "Aankoopmakelaar",
+    "description": "Een woning kopen met een ervaren aankoopmakelaar. DAM Housing helpt je zoeken, bezichtigen, onderhandelen en aankopen in Amstelveen, Aalsmeer en omstreken.",
+    "canonical": "https://damhousing.nl/aankoop",
+    "robots": "index,follow"
+   }
+  },
+  "page:verhuur": {
+   "slug": "verhuur",
+   "title": "Verhuur",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "pagina",
+     "fixed": true
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "pagina"
+   ],
+   "all_sections": [
+    {
+     "id": "pagina",
+     "label": "Verhuur"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": false,
+   "meta": {
+    "title": "Verhuurmakelaar",
+    "description": "Je woning verhuren in Amstelveen, Aalsmeer en omstreken? DAM Housing regelt de verhuur, presentatie en zorgvuldige screening van huurders.",
+    "canonical": "https://damhousing.nl/verhuur",
+    "robots": "index,follow"
+   }
+  },
+  "page:taxatie": {
+   "slug": "taxatie",
+   "title": "Taxatie",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "pagina",
+     "fixed": true
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "pagina"
+   ],
+   "all_sections": [
+    {
+     "id": "pagina",
+     "label": "Taxatie"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": false,
+   "meta": {
+    "title": "Woningtaxatie",
+    "description": "Een gevalideerde woningtaxatie nodig? DAM Housing verzorgt erkende NWWI-taxaties in Amstelveen, Aalsmeer en omgeving voor hypotheek, aankoop of verkoop.",
+    "canonical": "https://damhousing.nl/taxatie",
+    "robots": "index,follow"
+   }
+  },
+  "page:over-dam-housing": {
+   "slug": "over-dam-housing",
+   "title": "Over DAM Housing",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "pagina",
+     "fixed": true
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "pagina"
+   ],
+   "all_sections": [
+    {
+     "id": "pagina",
+     "label": "Over DAM Housing"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": false,
+   "meta": {
+    "title": "Over DAM Housing",
+    "description": "Maak kennis met Karen Dam en DAM Housing: persoonlijk, ervaren en betrokken makelaar & taxateur in Amstelveen, Aalsmeer en omstreken.",
+    "canonical": "https://damhousing.nl/over-dam-housing",
+    "robots": "index,follow"
+   }
+  },
+  "page:contact": {
+   "slug": "contact",
+   "title": "Contact",
+   "status": "published",
+   "template": "react",
+   "content_blocks": [
+    {
+     "type": "dam-sectie",
+     "section": "pagina",
+     "fixed": true
+    }
+   ],
+   "spa_texts": [],
+   "sections": [
+    "pagina"
+   ],
+   "all_sections": [
+    {
+     "id": "pagina",
+     "label": "Contact"
+    },
+    {
+     "id": "blokken",
+     "label": "Eigen blokken"
+    }
+   ],
+   "layout_editable": false,
+   "meta": {
+    "title": "Contact",
+    "description": "Neem contact op met DAM Housing in Amstelveen. Bel, mail of plan een afspraak met jouw persoonlijke makelaar en taxateur.",
+    "canonical": "https://damhousing.nl/contact",
+    "robots": "index,follow"
+   }
+  }
+ },
+ "pages_index": [
+  {
+   "slug": "",
+   "title": "Home",
+   "status": "published",
+   "template": "react",
+   "url": "/",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "DAM Housing — Makelaar & Taxateur in Amstelveen & Aalsmeer",
+   "meta_description": "Op zoek naar een makelaar in Amstelveen of Aalsmeer? DAM Housing begeleidt je persoonlijk bij de verkoop, aankoop, verhuur en taxatie van jouw woning."
+  },
+  {
+   "slug": "aanbod",
+   "title": "Woningaanbod",
+   "status": "published",
+   "template": "react",
+   "url": "/aanbod",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "Woningaanbod",
+   "meta_description": "Bekijk het actuele woningaanbod van DAM Housing in Amstelveen, Aalsmeer en omstreken: koopwoningen, appartementen en meer."
+  },
+  {
+   "slug": "diensten",
+   "title": "Diensten",
+   "status": "published",
+   "template": "react",
+   "url": "/diensten",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "Diensten",
+   "meta_description": "Verkoop, aankoop, verhuur en taxatie: ontdek de diensten van DAM Housing, jouw makelaar en taxateur in Amstelveen, Aalsmeer en omstreken."
+  },
+  {
+   "slug": "verkoop",
+   "title": "Verkoop",
+   "status": "published",
+   "template": "react",
+   "url": "/verkoop",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "Woning verkopen",
+   "meta_description": "Je woning verkopen in Amstelveen of Aalsmeer? DAM Housing begeleidt je persoonlijk van waardebepaling en styling tot onderhandeling en sleuteloverdracht."
+  },
+  {
+   "slug": "aankoop",
+   "title": "Aankoop",
+   "status": "published",
+   "template": "react",
+   "url": "/aankoop",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "Aankoopmakelaar",
+   "meta_description": "Een woning kopen met een ervaren aankoopmakelaar. DAM Housing helpt je zoeken, bezichtigen, onderhandelen en aankopen in Amstelveen, Aalsmeer en omstreken."
+  },
+  {
+   "slug": "verhuur",
+   "title": "Verhuur",
+   "status": "published",
+   "template": "react",
+   "url": "/verhuur",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "Verhuurmakelaar",
+   "meta_description": "Je woning verhuren in Amstelveen, Aalsmeer en omstreken? DAM Housing regelt de verhuur, presentatie en zorgvuldige screening van huurders."
+  },
+  {
+   "slug": "taxatie",
+   "title": "Taxatie",
+   "status": "published",
+   "template": "react",
+   "url": "/taxatie",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "Woningtaxatie",
+   "meta_description": "Een gevalideerde woningtaxatie nodig? DAM Housing verzorgt erkende NWWI-taxaties in Amstelveen, Aalsmeer en omgeving voor hypotheek, aankoop of verkoop."
+  },
+  {
+   "slug": "over-dam-housing",
+   "title": "Over DAM Housing",
+   "status": "published",
+   "template": "react",
+   "url": "/over-dam-housing",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "Over DAM Housing",
+   "meta_description": "Maak kennis met Karen Dam en DAM Housing: persoonlijk, ervaren en betrokken makelaar & taxateur in Amstelveen, Aalsmeer en omstreken."
+  },
+  {
+   "slug": "contact",
+   "title": "Contact",
+   "status": "published",
+   "template": "react",
+   "url": "/contact",
+   "in_sitemap": true,
+   "updated_at": "",
+   "meta_title": "Contact",
+   "meta_description": "Neem contact op met DAM Housing in Amstelveen. Bel, mail of plan een afspraak met jouw persoonlijke makelaar en taxateur."
+  }
+ ],
+ "media_index": [
+  {
+   "id": "seed000",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/dcbdf9dc9_FDB-9914.jpg",
+   "filename": "dcbdf9dc9_FDB-9914.jpg",
+   "alt": "AboutSection",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed001",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/4bc4a4c02_generated_b3c79806.png",
+   "filename": "4bc4a4c02_generated_b3c79806.png",
+   "alt": "HeroSection",
+   "mime": "image/png",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed002",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/de86ca2df_DAMhousing-13.jpg",
+   "filename": "de86ca2df_DAMhousing-13.jpg",
+   "alt": "Aankoop",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed003",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/a6626fc5a_Screenshot2026-04-15at020111.png",
+   "filename": "a6626fc5a_Screenshot2026-04-15at020111.png",
+   "alt": "Aankoop",
+   "mime": "image/png",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed004",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/75a73478f_DAMhousing-23.jpg",
+   "filename": "75a73478f_DAMhousing-23.jpg",
+   "alt": "Aankoop",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed005",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/f49ccd34a_DAMhousing-20.jpg",
+   "filename": "f49ccd34a_DAMhousing-20.jpg",
+   "alt": "Aankoop",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed006",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/7bb595249_champ2lr.jpg",
+   "filename": "7bb595249_champ2lr.jpg",
+   "alt": "About",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed007",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/53260f8df_master4lr.jpg",
+   "filename": "53260f8df_master4lr.jpg",
+   "alt": "About",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed008",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/aa5bebd1c_master4lr.jpg",
+   "filename": "aa5bebd1c_master4lr.jpg",
+   "alt": "Contact",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed009",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/6dc9f1f4a_DAMhousing-16.jpg",
+   "filename": "6dc9f1f4a_DAMhousing-16.jpg",
+   "alt": "Taxatie",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed010",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/793817bd2_DAMhousing-18.jpg",
+   "filename": "793817bd2_DAMhousing-18.jpg",
+   "alt": "Taxatie",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed011",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/d651f5d66_DAMhousing-17.jpg",
+   "filename": "d651f5d66_DAMhousing-17.jpg",
+   "alt": "Taxatie",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed012",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/d7d7f8c3e_DAMhousing-19.jpg",
+   "filename": "d7d7f8c3e_DAMhousing-19.jpg",
+   "alt": "Taxatie",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed013",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/699a5269c_FDB-9914.jpg",
+   "filename": "699a5269c_FDB-9914.jpg",
+   "alt": "Taxatie",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed014",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/f0efaa6b3_DAMhousing-13.jpg",
+   "filename": "f0efaa6b3_DAMhousing-13.jpg",
+   "alt": "Verhuur",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed015",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/82afdfefb_DAMhousing-16.jpg",
+   "filename": "82afdfefb_DAMhousing-16.jpg",
+   "alt": "Verhuur",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed016",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/15ed4e78c_DAMhousing-13.jpg",
+   "filename": "15ed4e78c_DAMhousing-13.jpg",
+   "alt": "Verhuur",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed017",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/6cb3ce362_DAMhousing-04.jpg",
+   "filename": "6cb3ce362_DAMhousing-04.jpg",
+   "alt": "Verkoop",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed018",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/faf467e6b_FDB-8655.jpg",
+   "filename": "faf467e6b_FDB-8655.jpg",
+   "alt": "Verkoop",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed019",
+   "url": "https://media.base44.com/images/public/69de2de67917694d33fdfed5/82ea6e490_DAMhousing-22.jpg",
+   "filename": "82ea6e490_DAMhousing-22.jpg",
+   "alt": "Verkoop",
+   "mime": "image/jpeg",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed020",
+   "url": "/avg-privacyverklaring.pdf",
+   "filename": "avg-privacyverklaring.pdf",
+   "alt": "avg privacyverklaring",
+   "mime": "application/pdf",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed021",
+   "url": "/dam-logo-trim.png",
+   "filename": "dam-logo-trim.png",
+   "alt": "dam logo trim",
+   "mime": "image/png",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed022",
+   "url": "/dam-logo-whitered-trim.png",
+   "filename": "dam-logo-whitered-trim.png",
+   "alt": "dam logo whitered trim",
+   "mime": "image/png",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed023",
+   "url": "/dam-logo-whitered.png",
+   "filename": "dam-logo-whitered.png",
+   "alt": "dam logo whitered",
+   "mime": "image/png",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  },
+  {
+   "id": "seed024",
+   "url": "/dam-logo.png",
+   "filename": "dam-logo.png",
+   "alt": "dam logo",
+   "mime": "image/png",
+   "bytes": 0,
+   "created": "",
+   "used_on": []
+  }
+ ],
+ "site_header_html": "",
+ "site_footer_html": ""
+}

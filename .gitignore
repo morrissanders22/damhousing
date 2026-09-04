@@ -40,3 +40,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# CMS: lokale KV/blob-fallback (alleen voor dev — productie draait op de KV-store)
+/admin/data/
+__pycache__/
+*.pyc

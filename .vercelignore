@@ -1,0 +1,6 @@
+server.py
+admin/data/
+__pycache__/
+*.pyc
+*.log
+.DS_Store

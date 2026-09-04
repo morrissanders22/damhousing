@@ -40,14 +40,51 @@ export default function Contact() {
     name: "", email: "", phone: "", subject: "", message: ""
   });
 
+  // Labels van de onderwerp-keuzelijst, zodat de lead en de mail "Verkoop" tonen
+  // en niet de machinewaarde "verkoop".
+  const SUBJECT_LABELS = {
+    verkoop: "Verkoop", aankoop: "Aankoop", taxatie: "Taxatie",
+    verhuur: "Verhuur", anders: "Anders",
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    // Simulate send
-    await new Promise(r => setTimeout(r, 1000));
-    toast({ title: "Bericht verzonden", description: "Ik neem zo snel mogelijk contact met je op." });
-    setForm({ name: "", email: "", phone: "", subject: "", message: "" });
-    setSending(false);
+    // Naar het CMS (api/index.py -> /api/submit): slaat de lead op in de pipeline,
+    // mailt Karen en stuurt de afzender een bevestiging. De veldnamen zijn exact
+    // die van FIELD_LABELS in de backend — wijkt er één af, dan komt dat veld leeg
+    // in de lead en in de mail terecht.
+    try {
+      const res = await fetch("/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          telefoon: form.phone,
+          onderwerp: SUBJECT_LABELS[form.subject] || form.subject,
+          note: form.message,
+          source_url: typeof window !== "undefined" ? window.location.href : "",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.ok === false) throw new Error(data.error || "Verzenden mislukt");
+      toast({
+        title: "Bericht verzonden",
+        description: data.message || "Ik neem zo snel mogelijk contact met je op.",
+      });
+      setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch {
+      // Nooit stil falen: een bezoeker die "verzonden" leest terwijl het bericht
+      // nergens aankwam is erger dan een zichtbare fout.
+      toast({
+        variant: "destructive",
+        title: "Versturen mislukt",
+        description: "Probeer het opnieuw of bel 020 - 820 0159.",
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
